@@ -10,5 +10,5 @@ import Foundation
 struct FoodElement: Codable {
     let id: Int
     let type, name, description: String
-    let price: Double
+    let price: Int
 }

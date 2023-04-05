@@ -24,6 +24,8 @@
 		71306CE329DB4C8C007A5320 /* ListSections.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71306CE229DB4C8C007A5320 /* ListSections.swift */; };
 		71306CE629DB6B87007A5320 /* BannerCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71306CE529DB6B87007A5320 /* BannerCellView.swift */; };
 		71306CE829DB6CA3007A5320 /* CategoryCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71306CE729DB6CA3007A5320 /* CategoryCellView.swift */; };
+		7156C8BC29DC4C90001AF77E /* MainMenuViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7156C8BB29DC4C90001AF77E /* MainMenuViewCell.swift */; };
+		7170E38629DD57AB0065E5A1 /* RoundedBackgroundIten.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7170E38529DD57AB0065E5A1 /* RoundedBackgroundIten.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +46,8 @@
 		71306CE229DB4C8C007A5320 /* ListSections.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListSections.swift; sourceTree = "<group>"; };
 		71306CE529DB6B87007A5320 /* BannerCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerCellView.swift; sourceTree = "<group>"; };
 		71306CE729DB6CA3007A5320 /* CategoryCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCellView.swift; sourceTree = "<group>"; };
+		7156C8BB29DC4C90001AF77E /* MainMenuViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainMenuViewCell.swift; sourceTree = "<group>"; };
+		7170E38529DD57AB0065E5A1 /* RoundedBackgroundIten.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RoundedBackgroundIten.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -157,6 +161,7 @@
 				71306CE429DB6B1D007A5320 /* Cells */,
 				71306CDA29DB0F68007A5320 /* MenuViewController.swift */,
 				71306CE029DB23CA007A5320 /* CityButtonView.swift */,
+				7170E38529DD57AB0065E5A1 /* RoundedBackgroundIten.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -174,6 +179,7 @@
 			children = (
 				71306CE529DB6B87007A5320 /* BannerCellView.swift */,
 				71306CE729DB6CA3007A5320 /* CategoryCellView.swift */,
+				7156C8BB29DC4C90001AF77E /* MainMenuViewCell.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -260,12 +266,14 @@
 				71306CD829DAFCB1007A5320 /* Categories.swift in Sources */,
 				71306CE829DB6CA3007A5320 /* CategoryCellView.swift in Sources */,
 				71306CD129DAF277007A5320 /* TabBarController.swift in Sources */,
+				7170E38629DD57AB0065E5A1 /* RoundedBackgroundIten.swift in Sources */,
 				71306CC329DAED5A007A5320 /* Food.swift in Sources */,
 				71306CAC29DACE3A007A5320 /* AppDelegate.swift in Sources */,
 				71306CD629DAF992007A5320 /* NetworkService.swift in Sources */,
 				71306CE129DB23CA007A5320 /* CityButtonView.swift in Sources */,
 				71306CDB29DB0F68007A5320 /* MenuViewController.swift in Sources */,
 				71306CE629DB6B87007A5320 /* BannerCellView.swift in Sources */,
+				7156C8BC29DC4C90001AF77E /* MainMenuViewCell.swift in Sources */,
 				71306CAE29DACE3A007A5320 /* SceneDelegate.swift in Sources */,
 				71306CE329DB4C8C007A5320 /* ListSections.swift in Sources */,
 				71306CDD29DB0F75007A5320 /* MenuPresenter.swift in Sources */,

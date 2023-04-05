@@ -10,9 +10,13 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
+    let normalTabBarAttributes: [NSAttributedString.Key: Any] = [
+        .font: UIFont.systemFont(ofSize: 12),
+    ]
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = .secondarySystemBackground
         setUpAppearance()
         setUpTabBar()
     }
@@ -28,6 +32,8 @@ final class TabBarController: UITabBarController {
     
     private func setUpAppearance() {
         let tabBarAppearance = UITabBarAppearance()
+        tabBarAppearance.stackedLayoutAppearance.normal.titleTextAttributes = normalTabBarAttributes
+        tabBar.standardAppearance = tabBarAppearance
         tabBar.scrollEdgeAppearance = tabBarAppearance
     }
     
@@ -57,6 +63,7 @@ final class TabBarController: UITabBarController {
     private func createNavController(viewController: UIViewController, imageName: String) -> UINavigationController {
         let navController = UINavigationController(rootViewController: viewController)
         navController.tabBarItem.image = UIImage(named: imageName)
+        navController.tabBarItem.setTitleTextAttributes([NSAttributedString.Key.font: UIFont.systemFont(ofSize: 13)], for: .normal)
         tabBar.tintColor = .systemPink
         return navController
     }

@@ -15,9 +15,6 @@ final class BannerCellView: UICollectionViewCell {
     private var bannerImageView: UIImageView = {
         let bannerImageView = UIImageView()
         bannerImageView.contentMode = .scaleToFill
-        bannerImageView.clipsToBounds = true
-        bannerImageView.layer.cornerRadius = 22
-        bannerImageView.backgroundColor = .clear
         return bannerImageView
     }()
     
@@ -27,15 +24,19 @@ final class BannerCellView: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        layout()
+        setUpView()
+        setConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    private func layout() {
-        contentView.addSubview(bannerImageView)
+    private func setUpView() {
+        self.contentView.addSubview(bannerImageView)
+    }
+    
+    private func setConstraints() {
         bannerImageView.snp.makeConstraints { make in
             make.top.leading.trailing.bottom.equalTo(contentView)
         }

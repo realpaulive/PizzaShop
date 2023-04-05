@@ -18,8 +18,8 @@ protocol MenuPresenterProtocol: AnyObject {
     func fetchData(forCategory section: Categories)
     
     var pizza: [FoodElement]? { get set }
-    var banners: [UIImage] { get }
-    var categories: [Categories] { get }
+    var banners: [UIImage] { get } //Mock
+    var categories: [Categories] { get } // Mock
     
     func returnErrorAlert() -> UIAlertController
 }

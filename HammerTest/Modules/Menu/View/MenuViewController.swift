@@ -52,6 +52,88 @@ final class MenuViewController: UIViewController {
     }
 }
 
+extension MenuViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        ListSections.allCases.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch ListSections.allCases[section] {
+        case .banners:
+            return presenter.banners.count
+        case .category:
+            return presenter.categories.count
+        case .mainMenu:
+            guard let pizzas = presenter.pizza else { return 0 }
+            return pizzas.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        switch ListSections.allCases[indexPath.section] {
+        case .banners:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCellView.identifier, for: indexPath) as? BannerCellView
+            else {
+                return  UICollectionViewCell()
+                
+            }
+            cell.setUpCell(whithImage: presenter.banners[indexPath.row])
+            return cell
+        case .category:
+            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCellView.identifier, for: indexPath) as? CategoryCellView
+            else { return  UICollectionViewCell() }
+            cell.configure(presenter.categories[indexPath.row].rawValue)
+            return cell
+        case .mainMenu:
+            guard let pizzas = presenter.pizza,
+                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainMenuViewCell.identifier, for: indexPath) as? MainMenuViewCell
+            else { return  UICollectionViewCell() }
+            cell.configure(withFood: pizzas[indexPath.row])
+            guard indexPath.row != pizzas.count
+            else {
+                cell.divider.backgroundColor = .none
+                return cell
+            }
+            return cell
+        }
+    }
+}
+
+extension MenuViewController {
+    @objc func dosome() {
+        print("open citypicker")
+    }
+}
+
+extension MenuViewController: MenuViewControllerProtocol {
+    func succes() {
+        collectionView.reloadData()
+    }
+    
+    func failure(error: Error) {
+        showErrorAlert()
+    }
+}
+
+extension MenuViewController {
+    func showErrorAlert() {
+        let alert = presenter.returnErrorAlert()
+        self.present(alert, animated: true)
+    }
+}
+
+extension MenuViewController {
+    private func setContstraints() {
+        NSLayoutConstraint.activate([
+            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
+            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
+            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
+            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        ])
+    }
+}
+
 extension MenuViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         let layout = UICollectionViewCompositionalLayout { [unowned self] sectionIndex, _ in
@@ -101,98 +183,13 @@ extension MenuViewController {
     private func createMainMenuSection() -> NSCollectionLayoutSection {
         let item = NSCollectionLayoutItem(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1)))
         let group = NSCollectionLayoutGroup.vertical(layoutSize: .init(widthDimension: .fractionalWidth(1), heightDimension: .absolute(180)), subitems: [item])
-        
 
         let section = NSCollectionLayoutSection(group: group)
-        
         section.decorationItems = [
             NSCollectionLayoutDecorationItem.background(elementKind: RoundedBackgroundView.identifier)
         ]
         section.contentInsets = .init(top: 0, leading: 0, bottom: 16, trailing: 0)
         
         return section
-        
-        
-    }
-}
-
-
-
-extension MenuViewController: UICollectionViewDataSource {
-    
-    func numberOfSections(in collectionView: UICollectionView) -> Int {
-        ListSections.allCases.count
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        switch ListSections.allCases[section] {
-        case .banners:
-            return presenter.banners.count
-        case .category:
-            return presenter.categories.count
-        case .mainMenu:
-            guard let pizzas = presenter.pizza else { return 0 }
-            return pizzas.count
-        }
-    }
-    
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        switch ListSections.allCases[indexPath.section] {
-        case .banners:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BannerCellView.identifier, for: indexPath) as? BannerCellView
-            else {
-                return  UICollectionViewCell()
-                
-            }
-            cell.setUpCell(whithImage: presenter.banners[indexPath.row])
-            return cell
-        case .category:
-            guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCellView.identifier, for: indexPath) as? CategoryCellView
-            else { return  UICollectionViewCell() }
-            cell.configure(presenter.categories[indexPath.row].rawValue)
-            return cell
-        case .mainMenu:
-            guard let pizzas = presenter.pizza,
-                  let cell = collectionView.dequeueReusableCell(withReuseIdentifier: MainMenuViewCell.identifier, for: indexPath) as? MainMenuViewCell
-            else { return  UICollectionViewCell() }
-            cell.configure(withFood: pizzas[indexPath.row])
-            return cell
-        }
-    }
-    
-}
-
-extension MenuViewController {
-    @objc func dosome() {
-        print("doing some")
-        collectionView.reloadData()
-    }
-}
-
-extension MenuViewController: MenuViewControllerProtocol {
-    func succes() {
-        collectionView.reloadData()
-    }
-    
-    func failure(error: Error) {
-        showErrorAlert()
-    }
-}
-
-extension MenuViewController {
-    func showErrorAlert() {
-        let alert = presenter.returnErrorAlert()
-        self.present(alert, animated: true)
-    }
-}
-
-extension MenuViewController {
-    private func setContstraints() {
-        NSLayoutConstraint.activate([
-            collectionView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 0),
-            collectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 0),
-            collectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: 0),
-            collectionView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
-        ])
     }
 }

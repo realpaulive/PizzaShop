@@ -10,7 +10,7 @@ import UIKit
 
 final class TabBarController: UITabBarController {
     
-    let normalTabBarAttributes: [NSAttributedString.Key: Any] = [
+    private let normalTabBarAttributes: [NSAttributedString.Key: Any] = [
         .font: UIFont.systemFont(ofSize: 12),
     ]
     

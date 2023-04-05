@@ -45,6 +45,12 @@ final class MainMenuViewCell: UICollectionViewCell {
         return button
     }()
     
+    let divider: UIView = {
+        let divider = UIView(frame: CGRect(x: 0, y: 0, width: 300, height: 1))
+        divider.backgroundColor = .secondarySystemBackground
+        return divider
+    }()
+    
     private let foodImage: UIImageView = {
         let foodImage = UIImageView()
         foodImage.clipsToBounds = true
@@ -76,6 +82,7 @@ final class MainMenuViewCell: UICollectionViewCell {
         contentView.addSubview(nameLabel)
         contentView.addSubview(descriptionLabel)
         contentView.addSubview(priceButton)
+        contentView.addSubview(divider)
     }
     
     private func setConstraints() {
@@ -103,6 +110,13 @@ final class MainMenuViewCell: UICollectionViewCell {
             make.top.equalTo(descriptionLabel.snp.bottom).offset(16)
             make.height.equalTo(32)
             make.width.equalTo(87)
+        }
+        
+        divider.snp.makeConstraints { make in
+            make.leading.equalTo(contentView)
+            make.trailing.equalTo(contentView)
+            make.bottom.equalTo(contentView)
+            make.height.equalTo(1)
         }
     }
 }

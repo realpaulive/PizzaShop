@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class RoundedBackgroundView: UICollectionReusableView {
+final class RoundedBackgroundView: UICollectionReusableView {
     
     static let identifier = "RoundedBackgroundView"
 

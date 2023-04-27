@@ -1,4 +1,4 @@
-# HammerTest - тестовое задание
+# PizzaShop
 
 ### TechStack:
 - MVP
